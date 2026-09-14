@@ -68,6 +68,7 @@
    OPTIGAD — design tokens
    ============================================================ */
 :root{
+  --star:#F5A524;
   --ink:#0B0B0C;
   --ink-soft:#17181B;
   --ink-70:rgba(11,11,12,.70);
@@ -276,7 +277,13 @@ body.is-locked{overflow:hidden}
   font-size:clamp(2.05rem,1.3rem + 2.5vw,3.5rem);
   line-height:1.08;letter-spacing:-.03em;
 }
-.hero .lede{margin-block-end:2.1rem;max-width:42ch}
+.hero .lede{margin-block-end:1.2rem;max-width:42ch}
+.hero__where{
+  display:flex;align-items:center;gap:.55rem;
+  margin:0 0 2.1rem;font-size:1rem;color:var(--on-dark-65);
+}
+.hero__where svg{width:1.1rem;height:1.1rem;flex:none;color:var(--on-dark-40)}
+.hero__where b{font-weight:600;color:var(--on-dark)}
 .hero__actions{display:flex;flex-wrap:wrap;gap:.75rem}
 
 /* health funds, right in the first screen */
@@ -296,11 +303,11 @@ body.is-locked{overflow:hidden}
 
 /* staged entrance */
 .stage>*{opacity:0;transform:translateY(22px);animation:stageIn .9s var(--ease-out) forwards}
-.stage>*:nth-child(1){animation-delay:.12s}
-.stage>*:nth-child(2){animation-delay:.24s}
-.stage>*:nth-child(3){animation-delay:.36s}
-.stage>*:nth-child(4){animation-delay:.48s}
-.stage>*:nth-child(5){animation-delay:.60s}
+.stage>*:nth-child(1){animation-delay:.10s}
+.stage>*:nth-child(2){animation-delay:.22s}
+.stage>*:nth-child(3){animation-delay:.32s}
+.stage>*:nth-child(4){animation-delay:.44s}
+.stage>*:nth-child(5){animation-delay:.56s}
 @keyframes stageIn{to{opacity:1;transform:none}}
 
 @media (max-width:980px){
@@ -459,15 +466,26 @@ body.is-locked{overflow:hidden}
 @media (max-width:760px){.funds{grid-template-columns:1fr}}
 
 /* Testimonials */
-.rating{
-  display:inline-flex;align-items:center;gap:.85rem;
-  padding:.6rem 1.1rem .6rem .8rem;border-radius:999px;
-  border:1px solid var(--line-dark);margin-block-end:1.5rem;
+.scores{display:flex;flex-wrap:wrap;gap:.7rem;margin-block-start:1.6rem}
+.score{
+  display:flex;align-items:center;gap:.9rem;
+  padding:.7rem 1.15rem;border-radius:14px;
+  border:1px solid var(--line-dark);
+  transition:border-color .25s var(--ease), background-color .25s var(--ease), transform .25s var(--ease);
 }
-.rating__n{font-family:"Heebo",sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-.03em;color:var(--on-dark);line-height:1}
-.rating__stars{display:flex;gap:2px}
-.rating__stars svg{width:15px;height:15px;color:var(--on-dark)}
-.rating__meta{font-size:.85rem;color:var(--on-dark-40);line-height:1.35}
+.score:hover{border-color:rgba(250,250,248,.34);background:rgba(250,250,248,.04);transform:translateY(-1px)}
+.score__n{
+  font-family:"Heebo",sans-serif;font-weight:800;font-size:1.75rem;
+  letter-spacing:-.035em;color:var(--on-dark);line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.score__of{font-size:.95rem;font-weight:600;color:var(--on-dark-40);letter-spacing:0}
+.score__b{display:flex;flex-direction:column;gap:.25rem}
+.score__stars{display:flex;gap:2px}
+.score__stars svg{width:14px;height:14px;color:var(--star)}
+.score__stars .half{position:relative;display:block;width:14px;height:14px;overflow:hidden}
+.score__stars .half svg{position:absolute;inset-block-start:0;inset-inline-end:0;color:var(--star);opacity:.42}
+.score__b small{font-size:.82rem;color:var(--on-dark-40);line-height:1.2}
 
 .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1rem,2vw,1.5rem)}
 .quote{
@@ -478,20 +496,25 @@ body.is-locked{overflow:hidden}
 }
 .quote:hover{border-color:rgba(250,250,248,.3);background:rgba(250,250,248,.03)}
 .quote__stars{display:flex;gap:2px}
-.quote__stars svg{width:14px;height:14px;color:var(--on-dark-65)}
+.quote__stars svg{width:15px;height:15px;color:var(--star)}
 .quote p{
   font-size:clamp(1.02rem,.98rem + .25vw,1.14rem);line-height:1.6;
   color:var(--on-dark);margin:0;flex:1;
 }
 .quote__who{display:flex;align-items:center;gap:.8rem}
 .avatar{
-  flex:none;width:42px;height:42px;border-radius:999px;
+  flex:none;width:44px;height:44px;border-radius:999px;
   display:grid;place-items:center;
-  background:rgba(250,250,248,.92);border:1px solid rgba(250,250,248,.92);
-  font-family:"Heebo",sans-serif;font-weight:800;font-size:1.05rem;
-  color:var(--ink);letter-spacing:0;
+  font-family:"Heebo",sans-serif;font-weight:800;font-size:1.08rem;
+  color:#fff;letter-spacing:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
 }
-.quote__id b{display:block;font-family:"Heebo",sans-serif;font-weight:600;font-size:.95rem;letter-spacing:-.01em;color:var(--on-dark)}
+.avatar--a{background:linear-gradient(145deg,#3E7BD9,#2B54A8)}
+.avatar--b{background:linear-gradient(145deg,#33A877,#1F7A54)}
+.avatar--c{background:linear-gradient(145deg,#E08A3C,#BD6522)}
+.avatar--d{background:linear-gradient(145deg,#8A66DB,#5F41A8)}
+.avatar--e{background:linear-gradient(145deg,#D95E7B,#AC3A56)}
+.quote__id b{display:block;font-family:"Heebo",sans-serif;font-weight:600;font-size:.95rem;letter-spacing:-.01em;color:var(--on-dark);unicode-bidi:plaintext}
 .quote__id small{display:block;font-size:.82rem;color:var(--on-dark-40)}
 .quotes__note{margin-block-start:1.8rem;font-size:.85rem;color:var(--on-dark-40)}
 .quotes__note a{text-decoration:underline;text-underline-offset:3px}
@@ -713,9 +736,12 @@ body.is-locked{overflow:hidden}
 <!-- ══════════ HERO ══════════ -->
 <section class="hero" id="top">
   <div class="hero__panel stage">
-    <p class="eyebrow on-dark">אופטיגד · הדר גנים, פתח תקווה</p>
     <h1 class="h-display">בדיקות ראייה<br>ומשקפיים, אצל<br>אופטומטריסט מוסמך.</h1>
     <p class="lede on-dark">גד עמיר, אופטומטריסט מוסמך (רישיון 84205), בודק ומתאים בעצמו כל זוג משקפיים וכל עדשת מגע שיוצאים מהחנות. התמחות בעדשות מולטיפוקל ובעדשות מגע לקרטוקונוס.</p>
+    <p class="hero__where">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>דרך מנחם בגין 21, <b>הדר גנים</b> · פתח תקווה</span>
+    </p>
     <div class="hero__actions">
       <a class="btn btn-light" href="tel:+97239339334">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -919,66 +945,76 @@ body.is-locked{overflow:hidden}
     <div class="sec__head reveal" style="margin-block-end:2.6rem">
       <p class="eyebrow on-dark">מה אומרים</p>
       <h2 class="h-section">לקוחות,<br>במילים שלהם.</h2>
-      <div class="rating">
-        <span class="rating__n">4.4</span>
-        <span class="rating__stars" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" opacity=".45"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-        </span>
-        <span class="rating__meta">4.4 מתוך 5<br>10 מדרגים בדפי זהב</span>
+      <div class="scores">
+        <a class="score" href="https://www.google.com/maps/search/%D7%90%D7%95%D7%A4%D7%98%D7%99%D7%92%D7%93+%D7%93%D7%A8%D7%9A+%D7%9E%D7%A0%D7%97%D7%9D+%D7%91%D7%92%D7%99%D7%9F+21+%D7%A4%D7%AA%D7%97+%D7%AA%D7%A7%D7%95%D7%95%D7%94" target="_blank" rel="noopener">
+          <span class="score__n">4.7</span>
+          <span class="score__b">
+            <span class="score__stars" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><span class="half"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span></span>
+            <small>Google · 23 ביקורות</small>
+          </span>
+        </a>
+        <a class="score" href="https://easy.co.il/page/3624599" target="_blank" rel="noopener">
+          <span class="score__n">8.9<span class="score__of">/10</span></span>
+          <span class="score__b">
+            <span class="score__stars" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><span class="half"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span></span>
+            <small>איזי · 37 ביקורות</small>
+          </span>
+        </a>
       </div>
     </div>
 
     <div class="quotes">
       <article class="quote reveal">
-        <span class="quote__stars" aria-label="5 מתוך 5">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-        </span>
+        <span class="quote__stars" aria-label="5 מתוך 5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
         <p>„אנחנו עושים משקפיים קבוע, לכל המשפחה, רק באופטיגד. קודם כל, יחס אנושי טוב”</p>
         <div class="quote__who">
-          <span class="avatar" aria-hidden="true">M</span>
+          <span class="avatar avatar--a" aria-hidden="true">M</span>
           <span class="quote__id"><b>miltasch</b><small>דפי זהב · נובמבר 2023</small></span>
         </div>
       </article>
-
-      <article class="quote reveal reveal-d1">
-        <span class="quote__stars" aria-label="5 מתוך 5">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-        </span>
+      <article class="quote reveal">
+        <span class="quote__stars" aria-label="5 מתוך 5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
         <p>„מקצועי אדיב, גדי תותח עובד עם קופות החולים בשביל משקפיים לילדים”</p>
         <div class="quote__who">
-          <span class="avatar" aria-hidden="true">M</span>
+          <span class="avatar avatar--b" aria-hidden="true">M</span>
           <span class="quote__id"><b>menaheme</b><small>דפי זהב · אוגוסט 2023</small></span>
         </div>
       </article>
-
       <article class="quote reveal">
-        <span class="quote__stars" aria-label="5 מתוך 5">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-        </span>
+        <span class="quote__stars" aria-label="5 מתוך 5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+        <p>„היחס ללקוח מצוין, יש בדיקת עיניים במקום, ומבחר משקפיים גדול והסדר עם קופות החולים”</p>
+        <div class="quote__who">
+          <span class="avatar avatar--c" aria-hidden="true">א</span>
+          <span class="quote__id"><b>אביב י.</b><small>איזי · אפריל 2018</small></span>
+        </div>
+      </article>
+      <article class="quote reveal">
+        <span class="quote__stars" aria-label="5 מתוך 5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
         <p>„גדי אדם מקצועי והגון. מומלץ בחום!”</p>
         <div class="quote__who">
-          <span class="avatar" aria-hidden="true">O</span>
+          <span class="avatar avatar--d" aria-hidden="true">O</span>
           <span class="quote__id"><b>O. H.</b><small>Bizly</small></span>
         </div>
       </article>
-
-      <article class="quote reveal reveal-d1">
-        <span class="quote__stars" aria-label="5 מתוך 5">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-        </span>
+      <article class="quote reveal">
+        <span class="quote__stars" aria-label="5 מתוך 5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
         <p>„מקצועי, אדיב, מחיר מצויין. זו החנות הראשונה שאני מקבל משקפיים ומייד”</p>
         <div class="quote__who">
-          <span class="avatar" aria-hidden="true">A</span>
+          <span class="avatar avatar--e" aria-hidden="true">A</span>
           <span class="quote__id"><b>avishai</b><small>דפי זהב · ינואר 2018</small></span>
+        </div>
+      </article>
+      <article class="quote reveal">
+        <span class="quote__stars" aria-label="5 מתוך 5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
+        <p>„פניתי לצורך תיקון משקפיים. השירות אדיב מאוד, תיקן בזמן והמחיר מצויין”</p>
+        <div class="quote__who">
+          <span class="avatar avatar--a" aria-hidden="true">מ</span>
+          <span class="quote__id"><b>מורן</b><small>דפי זהב · אוגוסט 2014</small></span>
         </div>
       </article>
     </div>
 
-    <p class="quotes__note">הביקורות מצוטטות כלשונן מ<a href="https://www.d.co.il/80059276/1530/" target="_blank" rel="noopener">דפי זהב</a> ומ<a href="https://bizly.co.il/vptyqy/mkhvz-hmrkz/vptygd/" target="_blank" rel="noopener">Bizly</a>.</p>
+    <p class="quotes__note">כל הביקורות מצוטטות כלשונן ממקורות פומביים: <a href="https://easy.co.il/page/3624599" target="_blank" rel="noopener">איזי</a>, <a href="https://www.d.co.il/80059276/1530/" target="_blank" rel="noopener">דפי זהב</a> ו<a href="https://bizly.co.il/vptyqy/mkhvz-hmrkz/vptygd/" target="_blank" rel="noopener">Bizly</a>.</p>
   </div>
 </section>
 
