@@ -129,14 +129,13 @@ p{margin:0}
 
 .eyebrow{
   font-family:"Heebo",sans-serif;
-  font-size:.74rem;
+  font-size:clamp(.92rem,.88rem + .12vw,1rem);
   font-weight:700;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--ink-45);
-  margin:0 0 1.1rem;
+  letter-spacing:-.005em;
+  color:var(--ink-70);
+  margin:0 0 .85rem;
 }
-.eyebrow.on-dark{color:var(--on-dark-40)}
+.eyebrow.on-dark{color:var(--on-dark-65)}
 
 .h-display{font-size:clamp(2.5rem,1.55rem + 3.9vw,4.7rem);font-weight:900}
 .h-section{font-size:clamp(2rem,1.25rem + 3.1vw,3.4rem)}
@@ -289,9 +288,9 @@ body.is-locked{overflow:hidden}
 /* health funds, right in the first screen */
 .hero__funds{margin-block-start:clamp(2.2rem,4vh,3.2rem)}
 .hero__funds p{
-  font-family:"Heebo",sans-serif;font-size:.72rem;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-40);
-  margin:0 0 .9rem;
+  font-family:"Heebo",sans-serif;font-size:.88rem;font-weight:600;
+  letter-spacing:-.005em;color:var(--on-dark-65);
+  margin:0 0 .8rem;
 }
 .fundrow{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center}
 .fundrow img{height:26px;width:auto;display:block}
@@ -332,9 +331,9 @@ body.is-locked{overflow:hidden}
 .strip__cell{background:var(--ink);padding:.2rem 1.5rem}
 .strip__cell:first-child{padding-inline-start:0}
 .strip__k{
-  font-family:"Heebo",sans-serif;font-size:.68rem;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-40);
-  margin-block-end:.5rem;
+  font-family:"Heebo",sans-serif;font-size:.86rem;font-weight:600;
+  letter-spacing:-.005em;color:var(--on-dark-40);
+  margin-block-end:.45rem;
 }
 .strip__v{font-family:"Heebo",sans-serif;font-size:1.06rem;font-weight:600;letter-spacing:-.01em;line-height:1.35}
 .strip__v a:hover{opacity:.72}
@@ -398,8 +397,8 @@ body.is-locked{overflow:hidden}
 }
 .svc__card:hover{background:var(--paper-warm)}
 .svc__n{
-  font-family:"Heebo",sans-serif;font-size:.72rem;font-weight:700;
-  letter-spacing:.14em;color:var(--ink-45);
+  font-family:"Heebo",sans-serif;font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;color:var(--ink-45);
 }
 .svc__card h3{font-size:1.32rem}
 .svc__card p{color:var(--ink-70);font-size:.99rem;line-height:1.65}
@@ -598,7 +597,7 @@ body.is-locked{overflow:hidden}
   border:1px solid var(--line-dark);border-radius:var(--r-lg);
   padding:clamp(1.7rem,3vw,2.5rem);
 }
-.card h3{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--on-dark-40);margin-block-end:1.4rem}
+.card h3{font-size:1rem;letter-spacing:-.01em;font-weight:700;color:var(--on-dark);margin-block-end:1.3rem}
 
 .addr{font-family:"Heebo",sans-serif;font-size:clamp(1.35rem,1.1rem + .8vw,1.85rem);font-weight:800;letter-spacing:-.025em;line-height:1.25;color:var(--on-dark)}
 .addr small{display:block;font-size:1rem;font-weight:400;color:var(--on-dark-65);letter-spacing:0;margin-block-start:.5rem;font-family:"Assistant",sans-serif}
@@ -629,7 +628,7 @@ body.is-locked{overflow:hidden}
 .foot__brand .brand__mark{color:var(--on-dark);font-size:1.5rem}
 .foot__brand p{margin-block-start:.6rem;font-size:.93rem;max-width:34ch;line-height:1.6}
 .foot__cols{display:flex;gap:clamp(2rem,5vw,4.5rem);flex-wrap:wrap}
-.foot__col h4{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-40);font-weight:700;margin-block-end:.9rem}
+.foot__col h4{font-size:.92rem;letter-spacing:-.005em;color:var(--on-dark);font-weight:700;margin-block-end:.9rem}
 .foot__col ul{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
 .foot__col a,.foot__col li{font-size:.93rem}
 .foot__col a:hover{color:var(--on-dark)}
@@ -803,7 +802,7 @@ body.is-locked{overflow:hidden}
         </div>
       </div>
       <div class="about__text reveal reveal-d1">
-        <p class="eyebrow">מי עומד מאחורי החנות</p>
+        <p class="eyebrow">האופטומטריסט</p>
         <h2 class="h-section">אופטומטריסט אחד,<br>מהבדיקה ועד המסירה.</h2>
         <p class="lede">אופטיגד היא חנות אופטיקה ותיקה במרכז המסחרי הדר גנים בפתח תקווה. את החנות מוביל גד עמיר, אופטומטריסט מוסמך, שמבצע בעצמו את הבדיקה, את המדידות ואת ההתאמה הסופית.</p>
         <p class="lede" style="margin-block-start:1.15rem">ההתמחות המרכזית שלו היא בתחומים שדורשים דיוק גבוה במיוחד: התאמת עדשות מולטיפוקל, ועדשות מגע מורכבות כולל עדשות לקרטוקונוס. אלה מקרים שבהם ההבדל בין התאמה סבירה להתאמה נכונה מורגש בכל שעה של היום.</p>
@@ -923,7 +922,6 @@ body.is-locked{overflow:hidden}
 <section class="sec sec--tight">
   <div class="shell">
     <div class="sec__head reveal" style="margin-block-end:2.2rem">
-      <p class="eyebrow">בחנות</p>
       <h2 class="h-section">מסגרות, עדשות<br>וחדר בדיקה.</h2>
     </div>
     <div class="gal reveal reveal-d1">
@@ -943,7 +941,6 @@ body.is-locked{overflow:hidden}
 <section class="sec sec--dark" id="reviews">
   <div class="shell">
     <div class="sec__head reveal" style="margin-block-end:2.6rem">
-      <p class="eyebrow on-dark">מה אומרים</p>
       <h2 class="h-section">לקוחות,<br>במילים שלהם.</h2>
       <div class="scores">
         <a class="score" href="https://www.google.com/maps/search/%D7%90%D7%95%D7%A4%D7%98%D7%99%D7%92%D7%93+%D7%93%D7%A8%D7%9A+%D7%9E%D7%A0%D7%97%D7%9D+%D7%91%D7%92%D7%99%D7%9F+21+%D7%A4%D7%AA%D7%97+%D7%AA%D7%A7%D7%95%D7%95%D7%94" target="_blank" rel="noopener">
@@ -1022,7 +1019,6 @@ body.is-locked{overflow:hidden}
 <section class="sec sec--warm sec--tight">
   <div class="shell">
     <div class="sec__head reveal" style="margin-block-end:2.4rem">
-      <p class="eyebrow">קופות חולים</p>
       <h2 class="h-section">בהסדר עם שלוש הקופות.</h2>
       <p class="lede">אפשר לממש את ההשתתפות שמגיעה לכם בקופה ישירות בחנות, בלי לרוץ לסניף אחר. כדאי לבדוק מולנו בטלפון מה הזכאות הנוכחית שלכם.</p>
     </div>
@@ -1047,7 +1043,7 @@ body.is-locked{overflow:hidden}
 <section class="sec sec--dark" id="visit">
   <div class="shell">
     <div class="sec__head reveal">
-      <p class="eyebrow on-dark">ביקור</p>
+      <p class="eyebrow on-dark">שעות וכתובת</p>
       <h2 class="h-section">מתי ואיפה.</h2>
     </div>
     <div class="visit">
@@ -1135,7 +1131,6 @@ body.is-locked{overflow:hidden}
 <section class="sec">
   <div class="shell final">
     <div class="reveal">
-      <p class="eyebrow">צעד הבא</p>
       <h2 class="h-section">מתי בדקתם ראייה<br>בפעם האחרונה?</h2>
       <p class="lede">אם עברה יותר משנתיים, או שאתם מרגישים שינוי בקריאה או בנהיגה, זה הזמן לבדיקה. התקשרו ונמצא מועד.</p>
       <div class="final__actions">
