@@ -12,7 +12,7 @@
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="אופטיגד | אופטומטריסט ומשקפיים בפתח תקווה">
 <meta property="og:description" content="בדיקות ראייה, משקפי מולטיפוקל ועדשות מגע בהתאמה אישית. דרך מנחם בגין 21, הדר גנים, פתח תקווה.">
-<meta property="og:image" content="images/hero-wall.jpg">
+<meta property="og:image" content="images/store.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
   "@type": "Optician",
   "name": "אופטיגד",
   "description": "מכון אופטומטרי וחנות אופטיקה בפתח תקווה. בדיקות ראייה, משקפי ראייה ומולטיפוקל, עדשות מגע ועדשות לקרטוקונוס.",
-  "image": "images/hero-wall.jpg",
+  "image": "images/store.jpg",
   "telephone": "+972-3-9339334",
   "address": {
     "@type": "PostalAddress",
@@ -243,67 +243,79 @@ p{margin:0}
 body.is-locked{overflow:hidden}
 
 /* ============================================================
-   Hero
+   Hero — split: statement panel + the actual shop
    ============================================================ */
 .hero{
-  position:relative;
-  min-height:min(100svh,940px);
-  display:flex;align-items:flex-end;
-  padding-block:calc(var(--nav-h) + 3rem) clamp(3.2rem,6vh,5.5rem);
+  position:relative;background:var(--ink);color:var(--on-dark);
+  display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+  min-height:min(100svh,900px);
   overflow:hidden;
-  background:var(--ink);
-  isolation:isolate;
 }
-.hero__media{position:absolute;inset:0;z-index:-2}
+.hero__panel{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--nav-h) + clamp(2.5rem,6vh,4.5rem)) clamp(1.5rem,5vw,5.5rem) clamp(2.5rem,5vh,4rem);
+  padding-inline-start:max(clamp(1.5rem,5vw,5.5rem), calc((100vw - 1240px)/2));
+}
+.hero__media{position:relative;overflow:hidden;background:var(--ink-soft)}
 .hero__media img{
-  width:100%;height:100%;object-fit:cover;object-position:50% 45%;
-  filter:grayscale(.28) contrast(1.06) brightness(.82);
-  transform:scale(1.08);
-  animation:heroIn 2.4s var(--ease-out) forwards;
+  width:100%;height:100%;object-fit:cover;object-position:46% 50%;
+  transform:scale(1.06);
+  animation:heroIn 2.6s var(--ease-out) forwards;
 }
 @keyframes heroIn{to{transform:scale(1)}}
-.hero::after{
-  content:"";position:absolute;inset:0;z-index:-1;
+/* a soft seam so the photo melts into the panel instead of butting against it */
+.hero__media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    linear-gradient(to top, rgba(6,6,7,.94) 0%, rgba(6,6,7,.78) 26%, rgba(6,6,7,.40) 55%, rgba(6,6,7,.52) 100%),
-    radial-gradient(125% 85% at 12% 22%, rgba(6,6,7,0) 0%, rgba(6,6,7,.58) 100%);
+    linear-gradient(to bottom, rgba(11,11,12,.62) 0%, rgba(11,11,12,.18) calc(var(--nav-h) + 26px), rgba(11,11,12,0) calc(var(--nav-h) + 90px)),
+    linear-gradient(to left, rgba(11,11,12,.92) 0%, rgba(11,11,12,.34) 16%, rgba(11,11,12,0) 42%);
 }
 
-.hero__body{position:relative;max-width:min(100%,46rem)}
 .hero h1{
-  color:var(--on-dark);
-  text-shadow:0 2px 30px rgba(0,0,0,.35);
-  margin-block-end:1.5rem;
+  color:var(--on-dark);margin-block-end:1.35rem;
+  font-size:clamp(2.05rem,1.3rem + 2.5vw,3.5rem);
+  line-height:1.08;letter-spacing:-.03em;
 }
-.hero .lede{margin-block-end:2.2rem;max-width:44ch;text-shadow:0 1px 18px rgba(0,0,0,.4)}
+.hero .lede{margin-block-end:2.1rem;max-width:42ch}
 .hero__actions{display:flex;flex-wrap:wrap;gap:.75rem}
-@media (max-width:640px){
-  .hero{min-height:min(92svh,820px)}
-  .hero h1{margin-block-end:1.1rem}
-  .hero .lede{font-size:1rem;margin-block-end:1.7rem}
-  .hero__actions .btn{flex:1 1 100%}
+
+/* health funds, right in the first screen */
+.hero__funds{margin-block-start:clamp(2.2rem,4vh,3.2rem)}
+.hero__funds p{
+  font-family:"Heebo",sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-40);
+  margin:0 0 .9rem;
+}
+.fundrow{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center}
+.fundrow img{height:26px;width:auto;display:block}
+.fundchip{
+  background:var(--on-dark);border-radius:10px;
+  padding:.5rem .85rem;display:flex;align-items:center;
+  box-shadow:0 1px 2px rgba(0,0,0,.25);
 }
 
 /* staged entrance */
 .stage>*{opacity:0;transform:translateY(22px);animation:stageIn .9s var(--ease-out) forwards}
-.stage>*:nth-child(1){animation-delay:.15s}
-.stage>*:nth-child(2){animation-delay:.28s}
-.stage>*:nth-child(3){animation-delay:.40s}
-.stage>*:nth-child(4){animation-delay:.52s}
+.stage>*:nth-child(1){animation-delay:.12s}
+.stage>*:nth-child(2){animation-delay:.24s}
+.stage>*:nth-child(3){animation-delay:.36s}
+.stage>*:nth-child(4){animation-delay:.48s}
+.stage>*:nth-child(5){animation-delay:.60s}
 @keyframes stageIn{to{opacity:1;transform:none}}
 
-.hero__scroll{
-  position:absolute;inset-block-end:2rem;inset-inline-end:0;
-  display:flex;align-items:center;gap:.65rem;
-  font-family:"Heebo",sans-serif;font-size:.72rem;font-weight:600;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-40);
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero__media{order:-1;aspect-ratio:16/10;min-height:260px}
+  .hero__media img{object-position:50% 52%}
+  .hero__media::after{background:linear-gradient(to bottom, rgba(11,11,12,.70) 0%, rgba(11,11,12,.18) calc(var(--nav-h) + 40px), rgba(11,11,12,0) 42%, rgba(11,11,12,.34) 80%, var(--ink) 100%)}
+  .hero__panel{padding:clamp(2rem,5vw,3rem) 1.25rem clamp(2.5rem,6vw,3.5rem);padding-inline-start:1.25rem}
+  .hero .lede{max-width:none}
 }
-.hero__scroll i{
-  display:block;width:1px;height:38px;background:var(--on-dark-40);
-  transform-origin:top;animation:scrollPulse 2.4s var(--ease) infinite;
+@media (max-width:640px){
+  .hero__media{aspect-ratio:4/3}
+  .hero .lede{font-size:1rem}
+  .hero__actions .btn{flex:1 1 100%}
 }
-@keyframes scrollPulse{0%,100%{transform:scaleY(.35);opacity:.4}50%{transform:scaleY(1);opacity:1}}
-@media (max-width:900px){.hero__scroll{display:none}}
 
 /* ============================================================
    Trust strip
@@ -343,7 +355,7 @@ body.is-locked{overflow:hidden}
 /* About */
 .about{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
 .about__media{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:5/4;background:var(--paper-warm)}
-.about__media img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;filter:contrast(1.03) saturate(.94)}
+.about__media img{width:100%;height:100%;object-fit:cover;object-position:50% 34%;filter:contrast(1.03) saturate(.96)}
 .about__badge{
   position:absolute;inset-block-end:1.1rem;inset-inline-start:1.1rem;inset-inline-end:1.1rem;
   background:rgba(255,255,255,.80);
@@ -435,13 +447,56 @@ body.is-locked{overflow:hidden}
 .funds{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 .fund{
   border:1px solid var(--line);border-radius:var(--r-md);
-  padding:1.25rem 1.4rem;background:var(--paper);
-  transition:border-color .25s var(--ease), transform .25s var(--ease);
+  padding:1.9rem 1.5rem 1.5rem;background:var(--paper);
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.15rem;
+  transition:border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
 }
-.fund:hover{border-color:var(--ink);transform:translateY(-2px)}
-.fund strong{display:block;font-family:"Heebo",sans-serif;font-weight:800;font-size:1.14rem;letter-spacing:-.015em;margin-block-end:.25rem}
-.fund span{font-size:.92rem;color:var(--ink-70)}
+.fund:hover{border-color:rgba(11,11,12,.28);transform:translateY(-2px);box-shadow:0 10px 30px -18px rgba(11,11,12,.4)}
+.fund__logo{height:44px;display:flex;align-items:center;justify-content:center}
+.fund__logo img{max-height:44px;width:auto}
+.fund__name b{display:block;font-family:"Heebo",sans-serif;font-weight:700;font-size:1rem;letter-spacing:-.012em;color:var(--ink)}
+.fund__name small{display:block;font-size:.88rem;color:var(--ink-45);margin-block-start:.15rem}
 @media (max-width:760px){.funds{grid-template-columns:1fr}}
+
+/* Testimonials */
+.rating{
+  display:inline-flex;align-items:center;gap:.85rem;
+  padding:.6rem 1.1rem .6rem .8rem;border-radius:999px;
+  border:1px solid var(--line-dark);margin-block-end:1.5rem;
+}
+.rating__n{font-family:"Heebo",sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-.03em;color:var(--on-dark);line-height:1}
+.rating__stars{display:flex;gap:2px}
+.rating__stars svg{width:15px;height:15px;color:var(--on-dark)}
+.rating__meta{font-size:.85rem;color:var(--on-dark-40);line-height:1.35}
+
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1rem,2vw,1.5rem)}
+.quote{
+  border:1px solid var(--line-dark);border-radius:var(--r-lg);
+  padding:clamp(1.6rem,2.6vw,2.1rem);
+  display:flex;flex-direction:column;gap:1.35rem;
+  transition:border-color .3s var(--ease), background-color .3s var(--ease);
+}
+.quote:hover{border-color:rgba(250,250,248,.3);background:rgba(250,250,248,.03)}
+.quote__stars{display:flex;gap:2px}
+.quote__stars svg{width:14px;height:14px;color:var(--on-dark-65)}
+.quote p{
+  font-size:clamp(1.02rem,.98rem + .25vw,1.14rem);line-height:1.6;
+  color:var(--on-dark);margin:0;flex:1;
+}
+.quote__who{display:flex;align-items:center;gap:.8rem}
+.avatar{
+  flex:none;width:42px;height:42px;border-radius:999px;
+  display:grid;place-items:center;
+  background:rgba(250,250,248,.92);border:1px solid rgba(250,250,248,.92);
+  font-family:"Heebo",sans-serif;font-weight:800;font-size:1.05rem;
+  color:var(--ink);letter-spacing:0;
+}
+.quote__id b{display:block;font-family:"Heebo",sans-serif;font-weight:600;font-size:.95rem;letter-spacing:-.01em;color:var(--on-dark)}
+.quote__id small{display:block;font-size:.82rem;color:var(--on-dark-40)}
+.quotes__note{margin-block-start:1.8rem;font-size:.85rem;color:var(--on-dark-40)}
+.quotes__note a{text-decoration:underline;text-underline-offset:3px}
+.quotes__note a:hover{color:var(--on-dark-65)}
+@media (max-width:760px){.quotes{grid-template-columns:1fr}}
 
 /* Menu toggle + mobile sheet */
 .menu-btn{
@@ -623,6 +678,7 @@ body.is-locked{overflow:hidden}
       <a href="#about">האופטומטריסט</a>
       <a href="#services">שירותים</a>
       <a href="#lenses">עדשות</a>
+      <a href="#reviews">המלצות</a>
       <a href="#faq">שאלות נפוצות</a>
       <a href="#visit">שעות וכתובת</a>
     </nav>
@@ -641,6 +697,7 @@ body.is-locked{overflow:hidden}
   <a href="#about">האופטומטריסט</a>
   <a href="#services">שירותים</a>
   <a href="#lenses">עדשות והתמחות</a>
+  <a href="#reviews">המלצות</a>
   <a href="#faq">שאלות נפוצות</a>
   <a href="#visit">שעות וכתובת</a>
   <div class="sheet__foot">
@@ -655,29 +712,32 @@ body.is-locked{overflow:hidden}
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero" id="top">
-  <div class="hero__media">
-    <img src="images/hero-wall.jpg" alt="קיר תצוגה של משקפי שמש ומסגרות בחנות אופטיקה" fetchpriority="high">
-  </div>
-  <div class="shell">
-    <div class="hero__body stage">
-      <p class="eyebrow on-dark">אופטומטריה · פתח תקווה</p>
-      <h1 class="h-display">מדידה מדויקת.<br>התאמה אישית.</h1>
-      <p class="lede on-dark">אופטיגד בהדר גנים, פתח תקווה. גד עמיר, אופטומטריסט מוסמך, בודק ומתאים בעצמו כל זוג משקפיים וכל עדשת מגע שיוצאים מהחנות.</p>
-      <div class="hero__actions">
-        <a class="btn btn-light" href="tel:+97239339334">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          לקביעת תור
-        </a>
-        <a class="btn btn-wa js-wa" href="#" data-wa-text="היי, אשמח לקבוע תור לבדיקת ראייה באופטיגד" hidden>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.09 3.2 5.07 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.72.98.99-3.63-.23-.37a9.79 9.79 0 0 1-1.5-5.22c0-5.4 4.4-9.8 9.82-9.8a9.75 9.75 0 0 1 6.94 2.88 9.72 9.72 0 0 1 2.87 6.93c0 5.4-4.4 9.81-9.8 9.81zM20.52 3.45A11.7 11.7 0 0 0 12.05 0C5.57 0 .3 5.27.29 11.74c0 2.07.54 4.09 1.57 5.87L.19 24l6.54-1.72a11.7 11.7 0 0 0 5.31 1.35h.01c6.48 0 11.75-5.27 11.76-11.75a11.68 11.68 0 0 0-3.29-8.43z"/></svg>
-          וואטסאפ
-        </a>
-        <a class="btn btn-outline-light" href="#services">מה עושים כאן</a>
+  <div class="hero__panel stage">
+    <p class="eyebrow on-dark">אופטיגד · הדר גנים, פתח תקווה</p>
+    <h1 class="h-display">בדיקות ראייה<br>ומשקפיים, אצל<br>אופטומטריסט מוסמך.</h1>
+    <p class="lede on-dark">גד עמיר, אופטומטריסט מוסמך (רישיון 84205), בודק ומתאים בעצמו כל זוג משקפיים וכל עדשת מגע שיוצאים מהחנות. התמחות בעדשות מולטיפוקל ובעדשות מגע לקרטוקונוס.</p>
+    <div class="hero__actions">
+      <a class="btn btn-light" href="tel:+97239339334">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        לקביעת תור
+      </a>
+      <a class="btn btn-wa js-wa" href="#" data-wa-text="היי, אשמח לקבוע תור לבדיקת ראייה באופטיגד" hidden>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.09 3.2 5.07 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.72.98.99-3.63-.23-.37a9.79 9.79 0 0 1-1.5-5.22c0-5.4 4.4-9.8 9.82-9.8a9.75 9.75 0 0 1 6.94 2.88 9.72 9.72 0 0 1 2.87 6.93c0 5.4-4.4 9.81-9.8 9.81zM20.52 3.45A11.7 11.7 0 0 0 12.05 0C5.57 0 .3 5.27.29 11.74c0 2.07.54 4.09 1.57 5.87L.19 24l6.54-1.72a11.7 11.7 0 0 0 5.31 1.35h.01c6.48 0 11.75-5.27 11.76-11.75a11.68 11.68 0 0 0-3.29-8.43z"/></svg>
+        וואטסאפ
+      </a>
+      <a class="btn btn-outline-light" href="#services">מה עושים כאן</a>
+    </div>
+    <div class="hero__funds">
+      <p>בהסדר עם קופות החולים</p>
+      <div class="fundrow">
+        <span class="fundchip"><img src="images/funds/maccabi.svg" alt="מכבי שירותי בריאות" loading="lazy"></span>
+        <span class="fundchip"><img src="images/funds/clalit.svg" alt="שירותי בריאות כללית" loading="lazy"></span>
+        <span class="fundchip"><img src="images/funds/meuhedet.svg" alt="קופת חולים מאוחדת" loading="lazy"></span>
       </div>
     </div>
   </div>
-  <div class="shell" style="position:absolute;inset-inline:0;inset-block-end:0;margin-inline:auto;pointer-events:none">
-    <div class="hero__scroll"><i></i> גלול</div>
+  <div class="hero__media">
+    <img src="images/store.jpg" alt="פנים החנות של אופטיגד, קירות תצוגה של מסגרות משקפיים ועמדת בדיקה" fetchpriority="high">
   </div>
 </section>
 
@@ -710,7 +770,7 @@ body.is-locked{overflow:hidden}
   <div class="shell">
     <div class="about">
       <div class="about__media reveal">
-        <img src="images/store.jpg" alt="פנים החנות של אופטיגד, קירות תצוגה של מסגרות משקפיים ועמדת בדיקה" loading="lazy">
+        <img src="images/exam.jpg" alt="בדיקת ראייה במכשיר פורופטר" loading="lazy">
         <div class="about__badge">
           <strong>גד עמיר</strong>
           <span>אופטומטריסט מוסמך · רישיון מס׳ 84205</span>
@@ -842,7 +902,7 @@ body.is-locked{overflow:hidden}
     </div>
     <div class="gal reveal reveal-d1">
       <figure class="wide tall"><img src="images/frames.jpg" alt="מסגרות משקפיים על מעמד תצוגה" loading="lazy"></figure>
-      <figure><img src="images/exam.jpg" alt="בדיקת ראייה במכשיר פורופטר" loading="lazy"></figure>
+      <figure><img src="images/loupe.jpg" alt="התאמת מסגרת ניסוי בבדיקת ראייה" loading="lazy"></figure>
       <figure><img src="images/rack.jpg" alt="מבחר מסגרות בצבעים שונים" loading="lazy"></figure>
       <figure><img src="images/vision.jpg" alt="משקפיים מול לוח בדיקת ראייה" loading="lazy"></figure>
       <figure><img src="images/sunglasses.jpg" alt="תצוגת משקפי שמש" loading="lazy"></figure>
@@ -850,6 +910,75 @@ body.is-locked{overflow:hidden}
       <figure><img src="images/iris.jpg" alt="תקריב של קשתית העין" loading="lazy"></figure>
       <figure><img src="images/vintage.jpg" alt="מסגרות קלאסיות בתצוגה" loading="lazy"></figure>
     </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="sec sec--dark" id="reviews">
+  <div class="shell">
+    <div class="sec__head reveal" style="margin-block-end:2.6rem">
+      <p class="eyebrow on-dark">מה אומרים</p>
+      <h2 class="h-section">לקוחות,<br>במילים שלהם.</h2>
+      <div class="rating">
+        <span class="rating__n">4.4</span>
+        <span class="rating__stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" opacity=".45"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </span>
+        <span class="rating__meta">4.4 מתוך 5<br>10 מדרגים בדפי זהב</span>
+      </div>
+    </div>
+
+    <div class="quotes">
+      <article class="quote reveal">
+        <span class="quote__stars" aria-label="5 מתוך 5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </span>
+        <p>„אנחנו עושים משקפיים קבוע, לכל המשפחה, רק באופטיגד. קודם כל, יחס אנושי טוב”</p>
+        <div class="quote__who">
+          <span class="avatar" aria-hidden="true">M</span>
+          <span class="quote__id"><b>miltasch</b><small>דפי זהב · נובמבר 2023</small></span>
+        </div>
+      </article>
+
+      <article class="quote reveal reveal-d1">
+        <span class="quote__stars" aria-label="5 מתוך 5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </span>
+        <p>„מקצועי אדיב, גדי תותח עובד עם קופות החולים בשביל משקפיים לילדים”</p>
+        <div class="quote__who">
+          <span class="avatar" aria-hidden="true">M</span>
+          <span class="quote__id"><b>menaheme</b><small>דפי זהב · אוגוסט 2023</small></span>
+        </div>
+      </article>
+
+      <article class="quote reveal">
+        <span class="quote__stars" aria-label="5 מתוך 5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </span>
+        <p>„גדי אדם מקצועי והגון. מומלץ בחום!”</p>
+        <div class="quote__who">
+          <span class="avatar" aria-hidden="true">O</span>
+          <span class="quote__id"><b>O. H.</b><small>Bizly</small></span>
+        </div>
+      </article>
+
+      <article class="quote reveal reveal-d1">
+        <span class="quote__stars" aria-label="5 מתוך 5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </span>
+        <p>„מקצועי, אדיב, מחיר מצויין. זו החנות הראשונה שאני מקבל משקפיים ומייד”</p>
+        <div class="quote__who">
+          <span class="avatar" aria-hidden="true">A</span>
+          <span class="quote__id"><b>avishai</b><small>דפי זהב · ינואר 2018</small></span>
+        </div>
+      </article>
+    </div>
+
+    <p class="quotes__note">הביקורות מצוטטות כלשונן מ<a href="https://www.d.co.il/80059276/1530/" target="_blank" rel="noopener">דפי זהב</a> ומ<a href="https://bizly.co.il/vptyqy/mkhvz-hmrkz/vptygd/" target="_blank" rel="noopener">Bizly</a>.</p>
   </div>
 </section>
 
@@ -862,9 +991,18 @@ body.is-locked{overflow:hidden}
       <p class="lede">אפשר לממש את ההשתתפות שמגיעה לכם בקופה ישירות בחנות, בלי לרוץ לסניף אחר. כדאי לבדוק מולנו בטלפון מה הזכאות הנוכחית שלכם.</p>
     </div>
     <div class="funds">
-      <div class="fund reveal"><strong>מכבי</strong><span>מכבי ממבט ראשון</span></div>
-      <div class="fund reveal reveal-d1"><strong>כללית</strong><span>כללית אופטיק</span></div>
-      <div class="fund reveal reveal-d2"><strong>מאוחדת</strong><span>מאוחדת אופטיקה</span></div>
+      <div class="fund reveal">
+        <span class="fund__logo"><img src="images/funds/maccabi.svg" alt="מכבי שירותי בריאות" loading="lazy"></span>
+        <span class="fund__name"><b>מכבי ממבט ראשון</b><small>בדיקות ראייה ואופטומטריה</small></span>
+      </div>
+      <div class="fund reveal reveal-d1">
+        <span class="fund__logo"><img src="images/funds/clalit.svg" alt="שירותי בריאות כללית" loading="lazy"></span>
+        <span class="fund__name"><b>כללית אופטיק</b><small>מימוש הזכאות בחנות</small></span>
+      </div>
+      <div class="fund reveal reveal-d2">
+        <span class="fund__logo"><img src="images/funds/meuhedet.svg" alt="קופת חולים מאוחדת" loading="lazy"></span>
+        <span class="fund__name"><b>מאוחדת אופטיקה</b><small>מימוש הזכאות בחנות</small></span>
+      </div>
     </div>
   </div>
 </section>
