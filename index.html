@@ -239,8 +239,6 @@ p{margin:0}
 
 @media (max-width:900px){
   .nav__links{display:none}
-  .menu-btn{display:inline-flex}
-  .nav__cta{display:none}
 }
 body.is-locked{overflow:hidden}
 
@@ -460,6 +458,11 @@ body.is-locked{overflow:hidden}
 .menu-btn[aria-expanded="true"] .bars{display:none}
 .menu-btn[aria-expanded="true"] .x{display:block}
 
+@media (max-width:900px){
+  .menu-btn{display:inline-flex}
+  .nav__cta{display:none}
+}
+
 .sheet{
   position:fixed;inset:0;z-index:88;
   background:rgba(11,11,12,.96);
@@ -472,12 +475,12 @@ body.is-locked{overflow:hidden}
   transition:opacity .32s var(--ease-out), transform .32s var(--ease-out), visibility .32s;
 }
 .sheet.is-open{opacity:1;visibility:visible;transform:none}
-.sheet a{
+.sheet a:not(.btn){
   font-family:"Heebo",sans-serif;font-size:1.55rem;font-weight:700;
   letter-spacing:-.025em;color:var(--on-dark);
   padding-block:1rem;border-block-end:1px solid var(--line-dark);
 }
-.sheet a:last-of-type{border-block-end:0}
+.sheet a:not(.btn):last-of-type{border-block-end:0}
 .sheet__foot{margin-block-start:auto;padding-block-start:2rem;display:grid;gap:.6rem}
 
 /* FAQ */
@@ -508,10 +511,10 @@ body.is-locked{overflow:hidden}
 .faq__a{padding-block:0 1.6rem;color:var(--ink-70);max-width:62ch;line-height:1.68}
 
 /* Visit */
-.visit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem)}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:start}
 .card--addr{display:flex;flex-direction:column;padding:0;overflow:hidden}
-.card__photo{aspect-ratio:16/10;background:var(--ink-soft)}
-.card__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 28%}
+.card__photo{flex:none;aspect-ratio:16/10;background:var(--ink-soft)}
+.card__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
 .card__inner{padding:clamp(1.7rem,3vw,2.5rem)}
 .card{
   border:1px solid var(--line-dark);border-radius:var(--r-lg);
